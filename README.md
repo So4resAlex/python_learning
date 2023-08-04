@@ -1,3 +1,3 @@
 # Python Learning 
 ------------------
-Este repositório esta sendo alimentao ao lonfo do curso Python Essentials com o Bruno Rocha.
+Este repositório esta sendo alimentado ao longo do curso Python Essentials com o Bruno Rocha.
