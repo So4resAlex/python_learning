@@ -1,4 +1,32 @@
 #!/usr/bin/env python3
+"""Hello World multi linguas.
 
-# Este programa imprime hello world 
-print ("hello, world".upper())
+Dependendo da lingua configurada no ambiente o programa exibe a mensagem
+correspondente.
+
+Como usar:
+
+Tenha a variavel LANG devidamente configurada ex:
+
+    export LANG=pt_BR
+
+Execução: 
+
+    python3 hello.py
+    ou
+    ./hello.py
+"""
+__version__ = "0.0.1"
+__author__ = "Alex"
+__license__ = "Unlicense"
+
+
+current_language = "it_IT"
+msg = "hello World"
+
+if current_language == "pt_BR":
+    msg = "Olá mundo"
+elif current_language == "it_IT":
+    msg = "Ciao, Mondo"
+
+print (msg)
