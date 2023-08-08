@@ -20,8 +20,9 @@ __version__ = "0.0.1"
 __author__ = "Alex"
 __license__ = "Unlicense"
 
+import os 
 
-current_language = "it_IT"
+current_language = os.getenv("LANG")[:5]
 msg = "hello World"
 
 if current_language == "pt_BR":
@@ -30,3 +31,6 @@ elif current_language == "it_IT":
     msg = "Ciao, Mondo"
 
 print (msg)
+
+
+#LANG=en_ZA.UTF-8
