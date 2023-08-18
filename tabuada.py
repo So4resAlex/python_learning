@@ -15,7 +15,8 @@ Tabuada do 2
 ##################
 """
 
-__
+__version__ = "0.1.1"
+__author__ = "Alex"
 
 
 numeros = list(range(1,11))
