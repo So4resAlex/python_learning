@@ -35,7 +35,7 @@ for nome_atividade, atividade in atividades:
         elif aluno in sala2:
             atividade_sala2.append(aluno)
     print(f"sala 1", atividade_sala1)
-    print(f"sala 2", atividade_sala1)
+    print(f"sala 2", atividade_sala2)
     print("-" * 35)
 
 
