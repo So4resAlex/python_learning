@@ -18,13 +18,17 @@ $ ./prefixcalc.py sum 5 2
 
 $ ./prefixcalc.py mul 10 5
 50
+
+Os resultados serão salvos em 'prefizcalc.log' 
 """
 
 __version__ = "0.1.0"
 __author__ = "Alex Soares"
 __license__ = "Unlicense"
 
-import sys
+import sys 
+import os
+from datetime import datetime
 
 arguments = sys.argv[1:]
 
@@ -66,6 +70,14 @@ elif operations == "mul":
     result = n1 * n2
 elif operations == "div":
     result = n1 / n2
+
+path = os.curdir
+filepath = os.path.join(path, "prefixcalc.log")
+timestamp = datetime.now().strftime('%H:%M:%S')
+user = os.getenv('USER', 'sei la quem foi')
+
+with open(filepath, "a") as file_:
+    file_.write(f"O usuário, {user}, usou a calculadora as {timestamp} e fez a operacao a seguir, {operations}, {n1}, {n2} = {result}\n")
 
 print (f"O resultado é {result}")
 
