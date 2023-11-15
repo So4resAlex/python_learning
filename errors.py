@@ -3,6 +3,8 @@
 import sys
 import os
 
+# LBYL - Look Before You Leap - Olhe antes de pular
+
 if os.path.exists("names.txt"):
     print("O arquivo existe")
     input("...") #Race condiction
@@ -10,8 +12,6 @@ if os.path.exists("names.txt"):
 else:
     print("Error: File names.txt not found")
     sys.exit(1)
-
-# LBYL - Look Before You Leap - Olhe antes de pular
 
 if len(names) >= 4:
     print(names[4])
