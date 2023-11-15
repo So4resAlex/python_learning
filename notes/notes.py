@@ -39,7 +39,12 @@ if arguments[0] == "read":
             print("-" * 30)
 
 if arguments[0] == "new":
-    title = arguments[1]
+    try:
+        title = arguments[1]
+    except IndexError as e:
+        print(str(e))
+        print("[ERROR] Informe um titulo para sua nota")
+        sys.exit(1)
     text = [
         f"{title}",
         input("tag:").strip(),
