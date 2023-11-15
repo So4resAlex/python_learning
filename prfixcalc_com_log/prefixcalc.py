@@ -60,8 +60,13 @@ for num in nums:
         num = int(num)
     valid_nums.append(num)
 
-n1, n2 = valid_nums
+try:
+    n1, n2 = valid_nums
 
+except ValueError as e:
+    print(str(e))
+    sys.exit(1)
+    
 if operations == "sum":
     result = n1 + n2
 elif operations == "sub":
@@ -76,8 +81,11 @@ filepath = os.path.join(path, "prefixcalc.log")
 timestamp = datetime.now().strftime('%H:%M:%S')
 user = os.getenv('USER', 'sei la quem foi')
 
-with open(filepath, "a") as file_:
-    file_.write(f"O usuário, {user}, usou a calculadora as {timestamp} e fez a operacao a seguir, {operations}, {n1}, {n2} = {result}\n")
+try:
+    with open(filepath, "a") as file_:
+        file_.write(f"O usuário, {user}, usou a calculadora as {timestamp} e fez a operacao a seguir, {operations}, {n1}, {n2} = {result}\n")
+except PermissionError as e:
+    print(str(e)) 
+    sys.exit(1)
 
 print (f"O resultado é {result}")
-
