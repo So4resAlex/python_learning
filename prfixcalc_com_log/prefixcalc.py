@@ -29,6 +29,23 @@ __license__ = "Unlicense"
 import sys 
 import os
 from datetime import datetime
+import logging
+
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+
+#Nossa instancia
+log = logging.Logger("Alex", log_level)
+#Level
+ch = logging.StreamHandler()
+ch.setLevel(log_level)
+#Formatação
+fmt = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s'
+    'l:%(lineno)d f:%(filename)s: %(message)s'
+)
+ch.setFormatter(fmt)
+#Destino
+log.addHandler(ch)
 
 arguments = sys.argv[1:]
 
@@ -38,21 +55,19 @@ if not arguments:
     n2 = input("n2: ")
     arguments = [operations, n1, n2]
 elif len(arguments) != 3:
-    print ("Numero de argumentos invalidos")
-    print("ex: `sum 5 5")
+    log.error("Numero de argumentos invalidos, exemplo de uso ex: `sum 5 5")
     sys.exit(1)
 
 operations, *nums = arguments
 
 valid_operations = ("sum","mul","sub", "div")
 if operations not in valid_operations:
-    print("Operacao invalida")
-    print(f"As operacoes validas sao {valid_operations}")
+    log.error("Operação invalida, as operações validas são %s", valid_operations)
 
 valid_nums = []
 for num in nums:
     if not num.replace(".", "").isdigit():
-        print(f"Numero {num} é invalido")
+        log.error("Número %s é invalido", num)
         sys.exit(1)
     if "." in num:
         num = float(num)
@@ -64,7 +79,7 @@ try:
     n1, n2 = valid_nums
 
 except ValueError as e:
-    print(str(e))
+    log.error("%s", e)
     sys.exit(1)
     
 if operations == "sum":
@@ -85,7 +100,7 @@ try:
     with open(filepath, "a") as file_:
         file_.write(f"O usuário, {user}, usou a calculadora as {timestamp} e fez a operacao a seguir, {operations}, {n1}, {n2} = {result}\n")
 except PermissionError as e:
-    print(str(e)) 
+    log.error("%s", e)
     sys.exit(1)
 
 print (f"O resultado é {result}")
