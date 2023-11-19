@@ -7,6 +7,7 @@ import sys
 
 try:
     names = open("names.txt").readlines()
+    1 / 0
 except FileNotFoundError:
     print("[ERROR] File names.txt not found")
     sys.exit(1)
