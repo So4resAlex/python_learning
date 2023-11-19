@@ -2,22 +2,26 @@
 
 import logging
 import os
+from logging import handlers
 
 log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
 
 #Nossa instancia
 log = logging.Logger("Alex", log_level)
 #Level
-ch = logging.StreamHandler()
-ch.setLevel(log_level)
+#ch = logging.StreamHandler() #Console/terminal/stderr
+fh = handlers.RotatingFileHandler("meu_log.log", maxBytes=10**6, backupCount=10)
+#ch.setLevel(log_level)
 #Formatação
+fh.setLevel(log_level)
 fmt = logging.Formatter(
     '%(asctime)s %(name)s %(levelname)s'
     'l:%(lineno)d f:%(filename)s: %(message)s'
 )
-ch.setFormatter(fmt)
+#ch.setFormatter(fmt)
+fh.setFormatter(fmt)
 #Destino
-log.addHandler(ch)
+log.addHandler(fh)
 
 """
 log.debug("Mensagem pro dev, QA, sysadmin")
