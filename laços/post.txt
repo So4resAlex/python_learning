@@ -1,0 +1,7 @@
+title: Meu post
+tags: tech, geral
+date:2022
+---
+Este é meu post
+Aqui texto com conteudo
+etc etc
