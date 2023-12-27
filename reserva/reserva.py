@@ -83,6 +83,41 @@ for num_quarto, dados_quarto in quartos.items():
     print(
         f"{num_quarto:<6} - {nome_quarto:<14} - " f"R$ {preco:<9.2f} - {disponivel:<10}"
     )
+print("-" * 52)
+
+#Reserva
+
+try:
+    num_quarto = int(input("Qual o quarto desejado? ").strip())
+    if not quartos[num_quarto]["disponivel"]:
+        print("")
+        print(f"O quarto {num_quarto} esta ocupado, por favor escolha outro")
+        sys.exit(0)
+except KeyError:
+    print("")
+    print(f"O quarto {num_quarto} não existe")
+    sys.exit(0)
+except ValueError:
+    print(f"Numero invalido, digite apenas digitos")
+    sys.exit(0)
+try:
+    dias = int(input("Quantos dias deseja ficar? "))
+except ValueError:
+        print(f"Numero invalido, digite apenas digitos")
+
+nome_quarto = quartos[num_quarto]["nome_quarto"]
+quartos = quartos[num_quarto]["preco"]
+
+total = dias * preco
+
+print(
+    f"Olá {nome_cliente}, voê escolheu  o quarto {nome_quarto}"
+    f"O valor total é de R$ {total:2f}")
+
+if input("Confirma? digite y").strip().lower() in ("y", "yes", "sim", "s"):
+        with open(RESERVAS_FILE, "a") as reserva_file:
+         reserva_file.write(f"{nome_cliente}, {num_quarto}, {dias}\n")
+
 
 
 
